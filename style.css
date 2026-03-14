@@ -1,0 +1,286 @@
+/* =========================================
+   VARIÁVEIS DE CORES E RESET BÁSICO
+========================================= */
+:root {
+    --cor-fundo: #f4f7f6;
+    --cor-texto: #333333;
+    --cor-primaria: #2c3e50;
+    --cor-secundaria: #3498db;
+    --cor-sucesso: #27ae60;
+    --cor-perigo: #e74c3c;
+    --cor-alerta: #f39c12;
+    --cor-card: #ffffff;
+    --borda-raio: 8px;
+    --sombra: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+}
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+header {
+    background-color: var(--cor-primaria);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--sombra);
+}
+
+/* =========================================
+   LAYOUT PRINCIPAL (FLEXBOX)
+========================================= */
+main {
+    display: flex;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    align-items: flex-start; /* Impede que o aside estique até o final da página */
+}
+
+/* =========================================
+   ASIDE: FORMULÁRIO (ESQUERDA)
+========================================= */
+aside {
+    flex: 0 0 320px; /* Largura fixa de 320px, não cresce nem encolhe */
+    background-color: var(--cor-card);
+    padding: 20px;
+    border-radius: var(--borda-raio);
+    box-shadow: var(--sombra);
+}
+
+.tituloFormulario h2 {
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    color: var(--cor-primaria);
+    border-bottom: 2px solid var(--cor-fundo);
+    padding-bottom: 10px;
+}
+
+.inputControl {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.inputControl label {
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.inputControl input,
+.inputControl select,
+.inputControl textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.inputControl textarea {
+    resize: vertical; /* Permite redimensionar apenas na altura */
+    min-height: 80px;
+}
+
+.inputControl input:focus,
+.inputControl select:focus,
+.inputControl textarea:focus {
+    border-color: var(--cor-secundaria);
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--cor-sucesso);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #219150;
+}
+
+/* =========================================
+   ÁREA DA LISTA E TOOLBAR (DIREITA)
+========================================= */
+.listaTarefas {
+    flex: 1; /* Ocupa todo o resto do espaço disponível */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tituloLista h2 {
+    font-size: 1.6rem;
+    color: var(--cor-primaria);
+}
+
+.toolbar {
+    display: flex;
+    gap: 15px;
+    background-color: var(--cor-card);
+    padding: 15px;
+    border-radius: var(--borda-raio);
+    box-shadow: var(--sombra);
+    flex-wrap: wrap; /* Permite que os itens quebrem linha em telas menores */
+}
+
+.controle-toolbar {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Faz os filtros dividirem o espaço igualmente */
+    min-width: 150px;
+}
+
+.controle-toolbar label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.controle-toolbar input,
+.controle-toolbar select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+/* =========================================
+   CARDS DE TAREFAS (O QUE O JS VAI GERAR)
+========================================= */
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.tarefa-card {
+    background-color: var(--cor-card);
+    padding: 15px 20px;
+    border-radius: var(--borda-raio);
+    box-shadow: var(--sombra);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 6px solid #ccc; /* Cor padrão, mudada pelas classes abaixo */
+    transition: transform 0.2s;
+}
+
+.tarefa-card:hover {
+    transform: translateY(-2px); /* Efeito de levantar o card ao passar o mouse */
+}
+
+/* Cores das Prioridades */
+.prioridade-alta { border-left-color: var(--cor-perigo); }
+.prioridade-media { border-left-color: var(--cor-alerta); }
+.prioridade-baixa { border-left-color: var(--cor-secundaria); }
+
+.tarefa-info {
+    flex: 1;
+}
+
+.tarefa-info h3 {
+    margin-bottom: 5px;
+    color: var(--cor-primaria);
+    font-size: 1.2rem;
+}
+
+.tarefa-info .descricao {
+    color: #666;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.meta-dados {
+    display: flex;
+    gap: 15px;
+    font-size: 0.85rem;
+}
+
+.tag-prioridade {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.data-entrega {
+    color: #888;
+}
+
+/* Botões de Ação do Card */
+.tarefa-acoes {
+    display: flex;
+    gap: 8px;
+}
+
+.tarefa-acoes button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    transition: opacity 0.3s;
+}
+
+.tarefa-acoes button:hover {
+    opacity: 0.8;
+}
+
+.btn-concluir { background-color: var(--cor-sucesso); }
+.btn-editar { background-color: var(--cor-alerta); }
+.btn-remover { background-color: var(--cor-perigo); }
+
+/* Classe que será adicionada pelo JS quando concluir a tarefa */
+.tarefa-concluida {
+    opacity: 0.6;
+    background-color: #f9f9f9;
+}
+
+.tarefa-concluida .tarefa-info h3 {
+    text-decoration: line-through;
+    color: #888;
+}
+
+/* =========================================
+   RESPONSIVIDADE (TELAS MENORES QUE 768px)
+========================================= */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column; /* Empilha o formulário e a lista */
+    }
+    aside {
+        flex: auto;
+        width: 100%;
+    }
+    .tarefa-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .tarefa-acoes {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}

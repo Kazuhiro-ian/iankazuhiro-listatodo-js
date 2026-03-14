@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista To Do</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Lista To Do</h1>
+    </header>
+    <main>
+        <!-- Formulário das tarefas -->
+        <aside>
+            <div class="tituloFormulario">
+                <h2>Nova Tarefa</h2>
+            </div>
+            <form id="formulario">
+                <!-- Entrada de dados do Título -->
+                <div class="inputControl">
+                    <label for="tituloTarefa">Titulo:</label>
+                    <input type="text" id="tituloTarefa" placeholder="Digite um título">
+                </div>
+                <!-- Descrição da tarefa -->
+                <div class="inputControl">
+                    <label for="descricaoTarefa">Descrição:</label>
+                    <textarea id="descricaoTarefa" placeholder="Descreva a tarefa:"></textarea>
+                </div>
+                <!-- Prioridade da tarefa -->
+                <div class="inputControl">
+                    <label for="prioridadeTarefa">Prioridade:</label>
+                    <select name="prioridadeTarefa" id="prioridadeTarefa">
+                        <option value="Baixa">Baixa</option>
+                        <option value="Média">Média</option>
+                        <option value="Alta">Alta</option>
+                    </select>
+                </div>
+                <!-- Data de entrega da tarefa -->
+                <div class="inputControl">
+                    <label for="dataTarefa">Data de entrega:</label>
+                    <input type="date" id="dataTarefa">
+                </div>
+                <!-- Botão de envio dos dados coletados -->
+                <button type="submit">Adicionar tarefa!</button>
+            </form>
+        </aside>
+
+        <!-- Listagem das tarefas adicionadas pelo formulário -->
+        <div class="listaTarefas">
+            <div class="tituloLista">
+                <h2>Lista de tarefas</h2>
+            </div>
+
+            <!-- Painel de controle de Filtros e ordenação das tarefas -->
+            <div class="toolbar">
+                <!-- Pesquisa -->
+                <div class="controle-toolbar">
+                    <label for="pesquisarTarefa">Pesquisar:</label>
+                    <input type="search" id="pesquisarTarefa" placeholder="Buscar por título...">
+                </div>
+                <!-- Filtro -->
+                <div class="controle-toolbar">
+                    <label for="filtrarStatus">Status:</label>
+                    <select id="filtrarStatus">
+                        <option value="todas">Todas as tarefas</option>
+                        <option value="pendentes">Apenas Pendentes</option>
+                        <option value="concluidas">Apenas Concluídas</option>
+                    </select>
+                </div>
+                <!-- Ordenação das tarefas -->
+                <div class="controle-toolbar">
+                    <label for="ordenarTarefas">Ordenar por:</label>
+                    <select id="ordenarTarefas">
+                        <option value="dataMaisProxima">Data (Mais próxima)</option>
+                        <option value="dataMaisDistante">Data (Mais distante)</option>
+                        <option value="prioridadeAlta">Prioridade (Alta para Baixa)</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Lista propriamente dita -->
+            <ul id="ulTarefas">
+                <li class="tarefa-card prioridade-alta">
+                    <div class="tarefa-info">
+                        <h3>#1 - Estudar CSS Grid</h3>
+                        <p class="descricao">Fazer exercícios práticos de layout para a lista to-do.</p>
+                        <div class="meta-dados">
+                            <span class="tag-prioridade">Alta</span>
+                            <span class="data-entrega">Entrega: 15/03/2026</span>
+                        </div>
+                    </div>
+                    <div class="tarefa-acoes">
+                        <button class="btn-concluir">Concluir</button>
+                        <button class="btn-editar">Editar</button>
+                        <button class="btn-remover">Remover</button>
+                    </div>
+                </li>
+                <!-- Aqui vai as tarefas adicionadas via JavaScript -->
+            </ul>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
